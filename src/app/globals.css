@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/*
+ * FlowBoard design tokens.
+ * Direction: ink on paper. Warm neutrals, one pine-green accent, muted semantic hues.
+ * All text/background pairs below meet WCAG AA (4.5:1) for their intended use.
+ */
+:root {
+  /* Surfaces */
+  --canvas: #f7f6f2;
+  --surface: #ffffff;
+  --surface-sunken: #f0eee8;
+  --surface-hover: #f3f1eb;
+
+  /* Text hierarchy */
+  --ink: #1c1b18;
+  --ink-2: #4f4c44;
+  --ink-3: #6b675d;
+
+  /* Borders */
+  --line: #e4e1d8;
+  --line-strong: #cfcbbf;
+
+  /* Accent (primary) */
+  --accent: #1f5c4d;
+  --accent-hover: #174739;
+  --accent-tint: #e5efeb;
+  --accent-ink: #ffffff;
+
+  /* Danger */
+  --danger: #a82e1c;
+  --danger-hover: #8c2414;
+  --danger-tint: #fbe9e5;
+
+  /* Status: dot colour, tint background, text */
+  --status-todo: #8a867b;
+  --status-todo-bg: #eeece6;
+  --status-todo-ink: #4f4c44;
+  --status-progress: #b7791f;
+  --status-progress-bg: #fbf1dc;
+  --status-progress-ink: #7a4e0b;
+  --status-review: #4a6178;
+  --status-review-bg: #e8eef3;
+  --status-review-ink: #34495d;
+  --status-done: #1f5c4d;
+  --status-done-bg: #e5efeb;
+  --status-done-ink: #174739;
+  --status-hold: #b7791f;
+  --status-hold-bg: #fbf1dc;
+  --status-hold-ink: #7a4e0b;
+
+  /* Priority */
+  --priority-urgent: #b3321f;
+  --priority-high: #c2570c;
+  --priority-medium: #6b675d;
+  --priority-low: #a09b8d;
+
+  /* Radii */
+  --radius-control: 6px;
+  --radius-panel: 8px;
+
+  /* Elevation: only popovers and dialogs float */
+  --shadow-pop: 0 8px 24px -6px rgb(28 27 24 / 0.16), 0 0 0 1px rgb(28 27 24 / 0.06);
+
+  /* Focus */
+  --focus-ring: 2px solid var(--accent);
+
+  /* Layout */
+  --sidebar-width: 15rem;
+  --topbar-height: 3rem;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-sunken: var(--surface-sunken);
+  --color-hover: var(--surface-hover);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-tint: var(--accent-tint);
+  --color-accent-ink: var(--accent-ink);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-tint: var(--danger-tint);
+
+  --color-status-todo: var(--status-todo);
+  --color-status-todo-bg: var(--status-todo-bg);
+  --color-status-todo-ink: var(--status-todo-ink);
+  --color-status-progress: var(--status-progress);
+  --color-status-progress-bg: var(--status-progress-bg);
+  --color-status-progress-ink: var(--status-progress-ink);
+  --color-status-review: var(--status-review);
+  --color-status-review-bg: var(--status-review-bg);
+  --color-status-review-ink: var(--status-review-ink);
+  --color-status-done: var(--status-done);
+  --color-status-done-bg: var(--status-done-bg);
+  --color-status-done-ink: var(--status-done-ink);
+  --color-status-hold: var(--status-hold);
+  --color-status-hold-bg: var(--status-hold-bg);
+  --color-status-hold-ink: var(--status-hold-ink);
+  --color-priority-urgent: var(--priority-urgent);
+  --color-priority-high: var(--priority-high);
+  --color-priority-medium: var(--priority-medium);
+  --color-priority-low: var(--priority-low);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-control: var(--radius-control);
+  --radius-panel: var(--radius-panel);
+  --shadow-pop: var(--shadow-pop);
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.25rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.375rem;
+  --text-lg: 1rem;
+  --text-lg--line-height: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+}
+
+@layer base {
+  html {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100dvh;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+  }
+
+  :focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--accent-tint);
+  }
+
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  dialog::backdrop {
+    background: rgb(28 27 24 / 0.4);
+  }
+
+  button,
+  select {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
